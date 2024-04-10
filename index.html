@@ -1,0 +1,115 @@
+
+<!--
+
+   ,_     _
+ |\\_,-~/
+ / _  _ |    ,--.
+(  @  @ )   / ,-'
+ \  _T_/-._( (
+ /         `. \
+|         _  \ |
+ \ \ ,  /      |
+  || |-_\__   /
+ ((_/`(____,-'
+
+ meow meow meooow meow meee meow 
+ translation : meow
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trust Me</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    #container {
+      text-align: center;
+    }
+
+    button {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      max-width: 300px;
+      height: auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <button id="trustButton">Trust Me</button>
+    <img id="catGif" src="gifs/catshakira.gif" alt="Cat GIF">
+    <audio id="bgMusic" loop>
+      <source src="audio.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    const trustButton = document.getElementById('trustButton');
+    const catGif = document.getElementById('catGif');
+    const bgMusic = document.getElementById('bgMusic');
+
+    const catGifs = [
+      'gifs/holymoly.gif',
+      'gifs/noidea.gif',
+      'gifs/catshakira.gif',
+      'gifs/elgato.gif',
+      'gifs/sillylittlebot.gif',
+      'gifs/whatdahel.gif'
+    ];
+
+    let currentGifIndex = 0;
+
+    trustButton.addEventListener('click', () => {
+      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+      let intervalId;
+
+      trustButton.style.display = 'none';
+      catGif.style.display = 'block';
+      bgMusic.play();
+
+      const colorFlicker = () => {
+        document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      };
+
+      const changeGif = () => {
+        catGif.src = catGifs[currentGifIndex];
+        currentGifIndex = (currentGifIndex + 1) % catGifs.length;
+      };
+
+      changeGif();
+
+      intervalId = setInterval(colorFlicker, 100);
+      setInterval(changeGif, 2000);
+    });
+  </script>
+</body>
+</html>
